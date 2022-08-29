@@ -2241,6 +2241,8 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
               : m_pcRdCost->getSqrtLambda();
 #endif
 
+(void) CandNum;
+
   //===== set QP and clear Cbf =====
   if ( pps.getUseDQP() == true)
   {
