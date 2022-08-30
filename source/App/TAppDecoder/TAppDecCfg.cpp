@@ -45,6 +45,10 @@
 #define strdup _strdup
 #endif
 
+#if CONFIG_HW
+#include "hw.h"
+#endif
+
 using namespace std;
 namespace po = df::program_options_lite;
 
@@ -139,6 +143,10 @@ Bool TAppDecCfg::parseCfg( Int argc, TChar* argv[] )
     fprintf(stderr, "No input file specified, aborting\n");
     return false;
   }
+
+#if CONFIG_HW
+  hw_global_set_input_fn((char *)m_bitstreamFileName.data());
+#endif
 
   if ( !cfg_TargetDecLayerIdSetFile.empty() )
   {

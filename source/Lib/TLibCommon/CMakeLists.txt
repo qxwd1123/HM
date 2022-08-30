@@ -63,8 +63,15 @@ if( SET_ENABLE_TRACING )
   endif()
 endif()
 
+if( CONFIG_HW )
+target_compile_definitions( ${LIB_NAME} PUBLIC CONFIG_HW=1)
+endif()
+if( CONFIG_HW_DEQUANT )
+target_compile_definitions( ${LIB_NAME} PUBLIC CONFIG_HW_DEQUANT=1)
+endif()
+
 target_include_directories( ${LIB_NAME} PUBLIC . .. ./x86 ../libmd5 )
-target_link_libraries( ${LIB_NAME} Threads::Threads )
+target_link_libraries( ${LIB_NAME} HARDWARE Threads::Threads )
 
 # set needed compile definitions
 set_property( SOURCE ${SSE41_SRC_FILES} APPEND PROPERTY COMPILE_DEFINITIONS USE_SSE41 )

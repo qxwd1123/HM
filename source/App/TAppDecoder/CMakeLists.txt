@@ -42,6 +42,13 @@ if( CMAKE_COMPILER_IS_GNUCC AND BUILD_STATIC )
   target_compile_definitions( ${EXE_NAME} PUBLIC ENABLE_WPP_STATIC_LINK=1 )
 endif()
 
+if( CONFIG_HW )
+target_compile_definitions( ${EXE_NAME} PUBLIC CONFIG_HW=1)
+endif()
+if( CONFIG_HW_DEQUANT )
+target_compile_definitions( ${EXE_NAME} PUBLIC CONFIG_HW_DEQUANT=1)
+endif()
+
 target_link_libraries( ${EXE_NAME} TLibCommon TLibDecoder Utilities Threads::Threads ${ADDITIONAL_LIBS} )
 
 if( CMAKE_SYSTEM_NAME STREQUAL "Linux" )

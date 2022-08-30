@@ -118,6 +118,7 @@ if( CMAKE_CXX_COMPILER_ID STREQUAL "GNU" )
 endif()
 
 # add needed subdirectories
+add_subdirectory( "source/hardware" )
 add_subdirectory( "source/Lib/TLibCommon" )
 add_subdirectory( "source/Lib/TLibCommonAnalyser" )
 if( EXTENSION_360_VIDEO )

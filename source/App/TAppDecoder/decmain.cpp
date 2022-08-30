@@ -40,6 +40,10 @@
 #include <time.h>
 #include "TAppDecTop.h"
 
+#if CONFIG_HW
+#include "hw.h"
+#endif
+
 //! \ingroup TAppDecoder
 //! \{
 
@@ -62,6 +66,10 @@ int main(int argc, char* argv[])
 
   // create application decoder class
   cTAppDecTop.create();
+
+#if CONFIG_HW
+  hw_global_init();
+#endif
 
   // parse configuration
   if(!cTAppDecTop.parseCfg( argc, argv ))
@@ -87,6 +95,11 @@ int main(int argc, char* argv[])
   // ending time
   dResult = (Double)(clock()-lBefore) / CLOCKS_PER_SEC;
   printf("\n Total Time: %12.3f sec.\n", dResult);
+
+#if CONFIG_HW
+  hw_global_frame_done();
+  hw_global_destroy();
+#endif
 
   // destroy application decoder class
   cTAppDecTop.destroy();

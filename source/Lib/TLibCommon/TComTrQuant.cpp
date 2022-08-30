@@ -45,6 +45,10 @@
 #include "TComTU.h"
 #include "Debug.h"
 
+#if CONFIG_HW
+#include "hw.h"
+#endif
+
 typedef struct
 {
   Int    iNNZbeforePos0;
@@ -1421,6 +1425,9 @@ Void TComTrQuant::xDeQuant(       TComTU        &rTu,
       }
     }
   }
+#if CONFIG_HW_DEQUANT
+  hw_dequant_stat_update_dqcoeff(uiWidth, uiHeight, piCoef);
+#endif
 }
 
 
