@@ -46,18 +46,6 @@ endif()
 
 target_link_libraries( ${EXE_NAME} TLibCommonAnalyser TLibDecoderAnalyser Utilities Threads::Threads ${ADDITIONAL_LIBS} )
 
-if( CMAKE_SYSTEM_NAME STREQUAL "Linux" )
-  add_custom_command( TARGET ${EXE_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy
-                                                          $<$<CONFIG:Debug>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG}/TAppDecoderAnalyser>
-                                                          $<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/TAppDecoderAnalyser>
-                                                          $<$<CONFIG:RelWithDebInfo>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO}/TAppDecoderAnalyser>
-                                                          $<$<CONFIG:MinSizeRel>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL}/TAppDecoderAnalyser>
-                                                          $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/bin/TAppDecoderAnalyserStaticd>
-                                                          $<$<CONFIG:Release>:${CMAKE_SOURCE_DIR}/bin/TAppDecoderAnalyserStatic>
-                                                          $<$<CONFIG:RelWithDebInfo>:${CMAKE_SOURCE_DIR}/bin/TAppDecoderAnalyserStaticp>
-                                                          $<$<CONFIG:MinSizeRel>:${CMAKE_SOURCE_DIR}/bin/TAppDecoderAnalyserStaticm> )
-endif()
-
 # example: place header files in different folders
 source_group( "Natvis Files" FILES ${NATVIS_FILES} )
 

@@ -50,18 +50,6 @@ if( EXTENSION_360_VIDEO )
   target_link_libraries( ${EXE_NAME} Lib360 AppEncHelper360 )
 endif()
 
-if( CMAKE_SYSTEM_NAME STREQUAL "Linux" )
-  add_custom_command( TARGET ${EXE_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy
-                                                          $<$<CONFIG:Debug>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG}/TAppEncoder>
-                                                          $<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/TAppEncoder>
-                                                          $<$<CONFIG:RelWithDebInfo>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO}/TAppEncoder>
-                                                          $<$<CONFIG:MinSizeRel>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL}/TAppEncoder>
-                                                          $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/bin/TAppEncoderStaticd>
-                                                          $<$<CONFIG:Release>:${CMAKE_SOURCE_DIR}/bin/TAppEncoderStatic>
-                                                          $<$<CONFIG:RelWithDebInfo>:${CMAKE_SOURCE_DIR}/bin/TAppEncoderStaticp>
-                                                          $<$<CONFIG:MinSizeRel>:${CMAKE_SOURCE_DIR}/bin/TAppEncoderStaticm> )
-endif()
-
 # example: place header files in different folders
 source_group( "Natvis Files" FILES ${NATVIS_FILES} )
 

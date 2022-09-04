@@ -63,6 +63,7 @@ if( OpenMP_FOUND )
   set( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}" )
 endif()
 
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 # Enable warnings for some generators and toolsets.
 # bb_enable_warnings( gcc warnings-as-errors -Wno-sign-compare )
 # bb_enable_warnings( gcc -Wno-unused-variable )
@@ -90,6 +91,7 @@ endif()
 
 # enable warnings
 bb_enable_warnings( msvc warnings-as-errors "/wd4996" )
+endif()
 
 # enable sse4.1 build for all source files for gcc and clang
 if( UNIX OR MINGW )

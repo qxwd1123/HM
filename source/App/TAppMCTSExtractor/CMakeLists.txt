@@ -44,18 +44,6 @@ endif()
 
 target_link_libraries( ${EXE_NAME} TLibCommon TLibEncoder TLibDecoder Utilities Threads::Threads ${ADDITIONAL_LIBS} )
 
-if( CMAKE_SYSTEM_NAME STREQUAL "Linux" )
-  add_custom_command( TARGET ${EXE_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy
-                                                          $<$<CONFIG:Debug>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG}/MCTSExtractor>
-                                                          $<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/MCTSExtractor>
-                                                          $<$<CONFIG:RelWithDebInfo>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO}/MCTSExtractor>
-                                                          $<$<CONFIG:MinSizeRel>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL}/MCTSExtractor>
-                                                          $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/bin/MCTSExtractorStaticd>
-                                                          $<$<CONFIG:Release>:${CMAKE_SOURCE_DIR}/bin/MCTSExtractorStatic>
-                                                          $<$<CONFIG:RelWithDebInfo>:${CMAKE_SOURCE_DIR}/bin/MCTSExtractorStaticp>
-                                                          $<$<CONFIG:MinSizeRel>:${CMAKE_SOURCE_DIR}/bin/MCTSExtractorStaticm> )
-endif()
-
 # example: place header files in different folders
 source_group( "Natvis Files" FILES ${NATVIS_FILES} )
 

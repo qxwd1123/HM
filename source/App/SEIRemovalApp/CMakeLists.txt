@@ -29,17 +29,5 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries( ${EXE_NAME} TLibCommon TLibDecoder Utilities Threads::Threads ${ADDITIONAL_LIBS} )
 
-if( CMAKE_SYSTEM_NAME STREQUAL "Linux" )
-  add_custom_command( TARGET ${EXE_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy
-                                                          $<$<CONFIG:Debug>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG}/SEIRemovalApp>
-                                                          $<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/SEIRemovalApp>
-                                                          $<$<CONFIG:RelWithDebInfo>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO}/SEIRemovalApp>
-                                                          $<$<CONFIG:MinSizeRel>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL}/SEIRemovalApp>
-                                                          $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/bin/SEIRemovalAppStaticd>
-                                                          $<$<CONFIG:Release>:${CMAKE_SOURCE_DIR}/bin/SEIRemovalAppStatic>
-                                                          $<$<CONFIG:RelWithDebInfo>:${CMAKE_SOURCE_DIR}/bin/SEIRemovalAppStaticp>
-                                                          $<$<CONFIG:MinSizeRel>:${CMAKE_SOURCE_DIR}/bin/SEIRemovalAppStaticm> )
-endif()
-
 # set the folder where to place the projects
 set_target_properties( ${EXE_NAME}  PROPERTIES FOLDER app LINKER_LANGUAGE CXX )
